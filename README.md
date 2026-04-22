@@ -13,17 +13,48 @@
 
 **Free 1,000-record samples. No card. No NDA. No IRB wait.**
 
-| Domain | Free Sample |
-|---|---|
-| Oncology | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/oncology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=oncology_1k) |
-| Cardiology | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/cardiology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=cardiology_1k) |
-| Neurology | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/neurology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=neurology_1k) |
-| Pathology | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/pathology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=pathology_1k) |
-| Radiology | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/radiology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=radiology_1k) |
-| All 9 domains | [Browse on HuggingFace →](https://huggingface.co/WitnessDataFactory) |
+| Domain | Browse Sample | Live Download |
+|---|---|---|
+| Oncology | [oncology_sample_1k.csv](samples/oncology/oncology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/oncology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=oncology_1k) |
+| Cardiology | [cardiology_sample_1k.csv](samples/cardiology/cardiology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/cardiology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=cardiology_1k) |
+| Neurology | [neurology_sample_1k.csv](samples/neurology/neurology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/neurology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=neurology_1k) |
+| Pathology | [pathology_sample_1k.csv](samples/pathology/pathology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/pathology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=pathology_1k) |
+| Radiology | [radiology_sample_1k.csv](samples/radiology/radiology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/radiology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=radiology_1k) |
+| Endocrinology | [endocrinology_sample_1k.csv](samples/endocrinology/endocrinology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/endocrinology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=endocrinology_1k) |
+| Pharmacology | [pharmacology_sample_1k.csv](samples/pharmacology/pharmacology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/pharmacology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=pharmacology_1k) |
+| Rare Disease | [rare_disease_sample_1k.csv](samples/rare_disease/rare_disease_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/rare_disease?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=rare_disease_1k) |
+| Surgical | [surgical_sample_1k.csv](samples/surgical/surgical_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/surgical?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=surgical_1k) |
 
 > Paid packs (10k → 1M records) delivered instantly via Stripe + presigned download URL.
 > [**Order now →**](https://witness-data-factory.onrender.com?utm_source=github_public&utm_medium=readme&utm_campaign=enterprise&utm_content=paid_tiers)
+
+---
+
+## Repository Structure
+
+```
+witness-data-public/
+├── samples/                        # Free 1k preview records per domain (CSV)
+│   ├── oncology/
+│   ├── cardiology/
+│   ├── neurology/
+│   ├── pathology/
+│   ├── radiology/
+│   ├── endocrinology/
+│   ├── pharmacology/
+│   ├── rare_disease/
+│   └── surgical/
+├── schemas/                        # JSON Schema definitions for all 9 domains
+│   ├── oncology_schema.json
+│   ├── cardiology_schema.json
+│   └── ... (all 9 domains)
+├── certificates/                   # QA certificate format + example
+│   └── README.md
+└── docs/
+    ├── quickstart.md               # Python load, validate, HuggingFace examples
+    ├── compliance.md               # HIPAA / GDPR / EU AI Act details
+    └── schema_overview.md          # All 9 domain label fields reference
+```
 
 ---
 
@@ -80,6 +111,8 @@ Every delivery ships with a machine-readable `qa_certificate.json` documenting:
 - Average, median, min, and max Trinity consensus scores
 - Pipeline version and ensemble model identifiers
 
+See [`certificates/README.md`](certificates/README.md) for the full certificate format.
+
 ---
 
 ## Zero-PHI Guarantee
@@ -105,6 +138,8 @@ No real patient data. No de-identification after the fact. PHI never enters the 
 | FDA Guidance (Synthetic Data for SaMD) | ALIGNED |
 
 WITNESS DATA FACTORY™ indemnifies purchasers against PHI claims under the terms of the commercial dataset license.
+
+Full compliance details: [`docs/compliance.md`](docs/compliance.md)
 
 ---
 
@@ -133,9 +168,26 @@ Delivery is fully automated. Download links issued without manual intervention.
 | `domain` | string | Clinical domain label |
 | `text` | string | Synthetic clinical note, report, or description |
 | `labels` | object | Structured annotations (task-specific per domain) |
-| `eval.confidence` | float | Trinity consensus score [0, 1] |
+| `eval.confidence` | float | Trinity consensus score [0.97, 1.0] |
 
 Filter on `eval.confidence >= 0.97` to match the production gate.
+
+Full schema definitions for all 9 domains: [`schemas/`](schemas/)
+
+Full field reference: [`docs/schema_overview.md`](docs/schema_overview.md)
+
+---
+
+## Quickstart
+
+```python
+import pandas as pd
+
+df = pd.read_csv('samples/oncology/oncology_sample_1k.csv')
+print(df[['id', 'label_primary', 'eval_confidence']].head())
+```
+
+Full examples (load, validate, HuggingFace): [`docs/quickstart.md`](docs/quickstart.md)
 
 ---
 
@@ -143,10 +195,10 @@ Filter on `eval.confidence >= 0.97` to match the production gate.
 
 | Resource | URL |
 |---|---|
-| Live Platform | [https://witness-data-factory.onrender.com](https://witness-data-factory.onrender.com?utm_source=github_public&utm_medium=readme&utm_campaign=links_table&utm_content=platform) |
-| Free Evaluation Datasets | [https://huggingface.co/WitnessDataFactory](https://huggingface.co/WitnessDataFactory) |
-| Enterprise Orders | [https://witness-data-factory.onrender.com](https://witness-data-factory.onrender.com?utm_source=github_public&utm_medium=readme&utm_campaign=links_table&utm_content=enterprise) |
-| Licensing Inquiries | WitnessDataFactory@gmail.com |
+| Live Platform | [witness-data-factory.onrender.com](https://witness-data-factory.onrender.com?utm_source=github_public&utm_medium=readme&utm_campaign=links_table&utm_content=platform) |
+| Free Evaluation Datasets | [huggingface.co/WitnessDataFactory](https://huggingface.co/WitnessDataFactory) |
+| Enterprise Orders | [witness-data-factory.onrender.com](https://witness-data-factory.onrender.com?utm_source=github_public&utm_medium=readme&utm_campaign=links_table&utm_content=enterprise) |
+| Licensing Inquiries | [WitnessDataFactory@gmail.com](mailto:WitnessDataFactory@gmail.com) |
 
 ---
 
