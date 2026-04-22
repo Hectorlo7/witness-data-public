@@ -1,0 +1,11 @@
+id,domain,text,label_primary,label_icd10,label_severity,eval_confidence
+NEU-000001,neurology,"63-year-old presenting with acute left-sided hemiparesis and facial droop. NIHSS 14. CT head negative for hemorrhage. tPA administered at 2.5 hours. Transferred to stroke unit.",Ischemic Stroke,I63.9,Severe,0.992
+NEU-000002,neurology,"Relapsing-remitting MS patient with new optic neuritis episode. MRI shows 3 new T2 lesions. Transitioning from glatiramer acetate to natalizumab. JC antibody index 0.4.",MS,G35,Moderate,0.986
+NEU-000003,neurology,"Early-onset Parkinson disease, age 61. Tremor-dominant phenotype. Levodopa/carbidopa initiated with good response. Neuropsychological evaluation ordered.",Parkinson Disease,G20,Mild,0.981
+NEU-000004,neurology,"Status epilepticus, generalized tonic-clonic. Lorazepam 4mg IV, then fosphenytoin. Seizures terminated at 28 minutes. EEG monitoring initiated. Levetiracetam added.",Status Epilepticus,G41.0,Critical,0.995
+NEU-000005,neurology,"Migraine with aura, chronic. 18 headache days per month. Starting topiramate 25mg titration for prophylaxis. Sumatriptan for acute attacks. Sleep hygiene counseled.",Chronic Migraine,G43.1,Moderate,0.974
+NEU-000006,neurology,"Guillain-Barre syndrome, ascending paralysis over 5 days. NCS confirms demyelinating pattern. IVIG 0.4g/kg x5 days initiated. ICU admission, respiratory monitoring.",GBS,G61.0,Severe,0.989
+NEU-000007,neurology,"Alzheimer disease, mild-moderate stage. MMSE 19. Starting donepezil 5mg, titrating to 10mg. Caregiver education provided. Safety evaluation of home environment.",Alzheimer Disease,G30.1,Moderate,0.977
+NEU-000008,neurology,"ALS confirmed on EMG. Upper and lower motor neuron signs diffuse. Riluzole initiated. Pulmonary function tests show FVC 72%. Multidisciplinary ALS clinic enrolled.",ALS,G12.21,Severe,0.991
+NEU-000009,neurology,"Trigeminal neuralgia, right V2/V3 distribution. VAS 9/10 pain episodes. Carbamazepine titrated to 400mg BID with response. MRI brain ordered to exclude secondary causes.",Trigeminal Neuralgia,G50.0,Severe,0.975
+NEU-000010,neurology,"Normal pressure hydrocephalus triad: gait apraxia, incontinence, cognitive decline. LP tap test positive. Neurosurgery referral for VP shunt evaluation.",NPH,G91.2,Moderate,0.980

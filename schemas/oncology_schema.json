@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WITNESS DATA FACTORY — Oncology Record Schema",
+  "description": "Schema for synthetic oncology clinical records. Trinity QA gate >= 0.97.",
+  "type": "object",
+  "required": ["id", "domain", "text", "labels", "eval"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^ONC-[0-9]{6}$", "description": "Stable synthetic record identifier" },
+    "domain": { "type": "string", "const": "oncology" },
+    "text": { "type": "string", "minLength": 50, "description": "Synthetic clinical note or report" },
+    "labels": {
+      "type": "object",
+      "properties": {
+        "primary_diagnosis": { "type": "string" },
+        "stage": { "type": "string" },
+        "histology": { "type": "string" },
+        "icd10": { "type": "string", "pattern": "^[A-Z][0-9]" }
+      }
+    },
+    "eval": {
+      "type": "object",
+      "required": ["confidence", "model_version"],
+      "properties": {
+        "confidence": { "type": "number", "minimum": 0.97, "maximum": 1.0, "description": "Trinity ensemble consensus score" },
+        "model_version": { "type": "string" }
+      }
+    }
+  }
+}

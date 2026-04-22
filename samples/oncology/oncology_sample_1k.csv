@@ -1,0 +1,11 @@
+id,domain,text,label_primary,label_stage,label_histology,eval_confidence
+ONC-000001,oncology,"Patient is a 58-year-old female presenting with stage IIIA non-small cell lung carcinoma. EGFR mutation positive. Initiated erlotinib 150mg daily. Follow-up CT in 8 weeks.",NSCLC,IIIA,Adenocarcinoma,0.991
+ONC-000002,oncology,"72-year-old male with diffuse large B-cell lymphoma, relapsed after R-CHOP. Enrolled in CAR-T cell therapy protocol. Baseline PET-CT ordered.",DLBCL,IV,B-cell,0.988
+ONC-000003,oncology,"Breast cancer surveillance visit. Patient 3 years post mastectomy, ER+/PR+ HER2-. Current tamoxifen therapy. No new masses on bilateral mammogram.",Breast,Surveillance,ER+PR+HER2-,0.979
+ONC-000004,oncology,"64-year-old with metastatic colorectal adenocarcinoma, KRAS wild-type. Starting FOLFOX + cetuximab. Liver lesions noted on MRI abdomen.",Colorectal,IV,Adenocarcinoma,0.982
+ONC-000005,oncology,"Prostate cancer, Gleason 8. PSA rising to 42.3. Initiating androgen deprivation therapy with leuprolide. Bone scan negative for distant metastases.",Prostate,IIB,Acinar,0.974
+ONC-000006,oncology,"Patient with pancreatic ductal adenocarcinoma, locally advanced, not surgically resectable. Gemcitabine + nab-paclitaxel initiated. Pain management optimized.",Pancreatic,III,Ductal,0.985
+ONC-000007,oncology,"Melanoma stage IIB, primary excised. Wide local excision margins clear. Sentinel lymph node biopsy negative. Annual dermatology surveillance recommended.",Melanoma,IIB,Cutaneous,0.977
+ONC-000008,oncology,"AML patient post-induction. Day 28 bone marrow biopsy confirms complete remission. Consolidation with high-dose cytarabine planned.",AML,CR,Myeloid,0.993
+ONC-000009,oncology,"Ovarian carcinoma, serous, stage IIIC. Post-surgical debulking. Initiating carboplatin/paclitaxel. CA-125 trending downward from 3400.",Ovarian,IIIC,Serous,0.980
+ONC-000010,oncology,"Thyroid papillary carcinoma, incidental finding. Total thyroidectomy performed. Pathology confirms follicular variant. Radioiodine ablation scheduled.",Thyroid,I,Papillary,0.971

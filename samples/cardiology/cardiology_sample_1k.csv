@@ -1,0 +1,11 @@
+id,domain,text,label_primary,label_icd10,label_severity,eval_confidence
+CAR-000001,cardiology,"68-year-old male admitted with STEMI, LAD occlusion. Primary PCI performed within 90 minutes. Drug-eluting stent placed. EF post-procedure 42%. Aspirin + ticagrelor initiated.",STEMI,I21.0,Critical,0.994
+CAR-000002,cardiology,"Patient with chronic heart failure, NYHA Class III, EF 30%. BNP 1840 pg/mL. Optimized on carvedilol, lisinopril, spironolactone. ICD referral discussed.",Heart Failure,I50.1,Severe,0.987
+CAR-000003,cardiology,"55-year-old female with paroxysmal atrial fibrillation. CHA2DS2-VASc score 3. Initiated rivaroxaban 20mg daily. Rate control with metoprolol 50mg BID.",Atrial Fibrillation,I48.0,Moderate,0.981
+CAR-000004,cardiology,"Hypertensive urgency, BP 198/112 on arrival. No end-organ damage. IV labetalol administered, transitioned to oral amlodipine. Discharged with medication reconciliation.",Hypertensive Urgency,I16.0,Moderate,0.976
+CAR-000005,cardiology,"Stable angina pectoris, CCS Class II. Stress nuclear imaging shows fixed inferior wall defect. Coronary angiography planned. Isosorbide mononitrate 30mg added.",Stable Angina,I20.8,Mild,0.969
+CAR-000006,cardiology,"Complete heart block in 77-year-old with syncope. Temporary transvenous pacing initiated. Permanent dual-chamber pacemaker implanted without complications.",Complete Heart Block,I44.2,Severe,0.990
+CAR-000007,cardiology,"Hypertrophic obstructive cardiomyopathy confirmed on echocardiogram. Septal thickness 22mm. Gradient 56mmHg. Beta-blocker titrated. Genetic counseling referral placed.",HOCM,I42.1,Moderate,0.984
+CAR-000008,cardiology,"Acute decompensated heart failure. BNP 3200. IV furosemide diuresis initiated. Daily weights, strict fluid restriction. Renal function monitored.",ADHF,I50.9,Severe,0.988
+CAR-000009,cardiology,"Patient with peripheral artery disease, ABI 0.62 bilateral. Claudication limiting ambulation to one block. Supervised exercise therapy and cilostazol initiated.",PAD,I73.9,Moderate,0.973
+CAR-000010,cardiology,"Pericarditis confirmed by diffuse ST elevation and PR depression on ECG. Echo shows small effusion. High-dose aspirin + colchicine prescribed. Strenuous activity restricted 3 months.",Pericarditis,I30.9,Mild,0.978
