@@ -1,11 +1,11 @@
 # WITNESS DATA FACTORY™
 
-**Zero-PHI. Trinity-certified. Synthetic medical datasets for clinical AI.**
+**Zero-PHI. Production-grade synthetic medical datasets for clinical AI.**
 
 [![Platform](https://img.shields.io/badge/Platform-Live-brightgreen)](https://witness-data-factory.onrender.com)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-WitnessDataFactory-yellow)](https://huggingface.co/WitnessDataFactory)
 [![License](https://img.shields.io/badge/License-Commercial-blue)](mailto:WitnessDataFactory@gmail.com)
-[![QA Gate](https://img.shields.io/badge/Trinity%20QA%20Gate-97%25-brightgreen)](https://witness-data-factory.onrender.com)
+[![QA Gate](https://img.shields.io/badge/QA%20Gate-Rules%20%2B%20Optional%20Trinity-brightgreen)](https://witness-data-factory.onrender.com)
 
 ---
 
@@ -64,7 +64,7 @@ Medical AI teams waste months on IRB approvals, de-identification workflows, and
 
 We eliminate that wait entirely.
 
-WITNESS DATA FACTORY™ is a deterministic GenAI pipeline that generates, validates, and delivers **production-grade synthetic clinical text datasets** — certified under a 97% Trinity Ensemble consensus gate — with zero real patient data ever accessed or stored.
+WITNESS DATA FACTORY™ is a deterministic GenAI pipeline that generates, validates, and delivers **production-grade synthetic clinical text datasets** with zero real patient data ever accessed or stored.
 
 **The factory produces the datasets. The datasets are the product.**
 
@@ -96,22 +96,25 @@ WITNESS DATA FACTORY™ is a deterministic GenAI pipeline that generates, valida
 | Pro | 250,000 | Large-scale pretraining |
 | Enterprise | 1,000,000 | Full synthetic medical corpus |
 
+> **Requested tier vs delivered rows:** Commercial tiers define the requested batch size and appear in batch IDs, filenames, and package identity. The actual delivered row count is recorded in `records_delivered` in the QA certificate JSON and `final_total` in the Stage 4 quality report. Because automated QA exclusion applies before delivery, the delivered count may be slightly lower than the requested tier size. This is expected and valid behavior.
+
 ---
 
-## The Trinity Quality Gate
+## QA Pipeline and Operating Modes
 
-Every record passes a **97% Trinity Ensemble Gate** before delivery.
+Every production batch is processed through the WITNESS multi-stage validation pipeline before delivery. The pipeline supports two operating modes, recorded in every batch's machine-readable `qa_certificate.json`:
 
-Three independent LLMs (`llama3.3`, `mistral`, `qwen2.5`) score each record in a blind consensus configuration. Records below the 97% threshold are discarded and regenerated — the gate is never relaxed.
+| Mode | `gate_mode` | `witness_gate_status` | Trinity Active? | ESCALATE Record Handling |
+|---|---|---|---|---|
+| **Witness Gate** | `witness_gate` | `enabled_for_batch` | Yes — 3-model ensemble | Reviewed by Trinity; PASS records may be delivered, REJECT records excluded |
+| **Rules-only** | `rules_only` | `disabled_for_batch` | No — intentionally disabled | Excluded without Trinity review; counted as rejected in QA certificate |
 
-Every delivery ships with a machine-readable `qa_certificate.json` documenting:
+**In both modes:**
+- Only rules PASS and REPAIR records (and, in Witness Gate mode, Trinity gate PASS records) are delivered.
+- The `qa_certificate.json` delivered with every batch is the **canonical machine-readable source of truth** for `gate_mode`, `witness_gate_status`, `records_delivered`, rejection counts, and all quality metrics.
+- The compliance PDFs included in each delivery package are supporting human-readable documents.
 
-- Batch ID and certificate timestamp
-- Records requested / pool generated / records delivered
-- Average, median, min, and max Trinity consensus scores
-- Pipeline version and ensemble model identifiers
-
-See [`certificates/README.md`](certificates/README.md) for the full certificate format.
+See [`certificates/README.md`](certificates/README.md) for the full QA certificate field reference.
 
 ---
 
@@ -121,7 +124,7 @@ See [`certificates/README.md`](certificates/README.md) for the full certificate 
 |---|---|
 | **LLM Generation** | Ollama LLMs generate synthetic records only — no EHR access, no real patient source |
 | **Privacy Sentinel** | A separate PHI-detection model screens every record; differential-privacy constraints enforced |
-| **Attestation Layer** | Every batch ships with a signed QA certificate, CC BY 4.0, HIPAA-aligned license |
+| **Attestation Layer** | Every batch ships with a signed QA certificate, manifest, and HIPAA-aligned license |
 
 No real patient data. No de-identification after the fact. PHI never enters the pipeline.
 
@@ -151,10 +154,14 @@ Every purchase produces a standardized ZIP:
 CLIENT_DELIVERY_<domain>_<amount>_req<id>.zip
 ├── <domain>_<amount>_req<id>.jsonl                          # Primary dataset (UTF-8 JSON Lines)
 ├── README_<domain>_req<id>.md                               # Human-readable delivery summary
-├── qa_certificate.json                                      # Machine-readable QA certification
+├── qa_certificate_<domain>_req<id>.json                     # Machine-readable QA certification (canonical batch record)
+├── delivery_manifest_<domain>_req<id>.json                  # File-level hashes and audit trail
 ├── WITNESS-DATA-Provenance-Compliance-Certificate-v2.pdf
-└── WITNESS-DATA-Technical-Proof-Addendum-v1.pdf
+├── WITNESS-DATA-Technical-Proof-Addendum-v1.pdf
+└── WITNESS-DATA-License-Compliance-Framework-v1.pdf
 ```
+
+The `qa_certificate.json` and `delivery_manifest.json` are the **authoritative machine-readable records** for the batch. The three PDFs are supporting human-readable compliance and audit documents.
 
 Delivery is fully automated. Download links issued without manual intervention.
 
@@ -168,9 +175,7 @@ Delivery is fully automated. Download links issued without manual intervention.
 | `domain` | string | Clinical domain label |
 | `text` | string | Synthetic clinical note, report, or description |
 | `labels` | object | Structured annotations (task-specific per domain) |
-| `eval.confidence` | float | Trinity consensus score [0.97, 1.0] |
-
-Filter on `eval.confidence >= 0.97` to match the production gate.
+| `eval.confidence` | float | Rules-based QA confidence score; in Witness Gate mode, reflects Trinity consensus score |
 
 Full schema definitions for all 9 domains: [`schemas/`](schemas/)
 
