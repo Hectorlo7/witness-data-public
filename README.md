@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/badge/Platform-Live-brightgreen)](https://witness-data-factory.onrender.com)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-WitnessDataFactory-yellow)](https://huggingface.co/WitnessDataFactory)
 [![License](https://img.shields.io/badge/License-Commercial-blue)](mailto:WitnessDataFactory@gmail.com)
-[![QA Gate](https://img.shields.io/badge/QA%20Gate-Rules%20%2B%20Optional%20Trinity-brightgreen)](https://witness-data-factory.onrender.com)
+[![WITNESS GATE](https://img.shields.io/badge/WITNESS%20GATE%20SCORE-%E2%89%A5%200.97-brightgreen)](https://witness-data-factory.onrender.com)
 
 ---
 
@@ -25,7 +25,7 @@
 | Rare Disease | [rare_disease_sample_1k.csv](samples/rare_disease/rare_disease_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/rare_disease?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=rare_disease_1k) |
 | Surgical | [surgical_sample_1k.csv](samples/surgical/surgical_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/surgical?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=surgical_1k) |
 
-> Paid packs (10k → 1M records) delivered instantly via Stripe + presigned download URL.
+> Paid packs (10k → 1M records) sold via **AWS Data Exchange** and delivered via entitlement + presigned download URL.
 > [**Order now →**](https://witness-data-factory.onrender.com?utm_source=github_public&utm_medium=readme&utm_campaign=enterprise&utm_content=paid_tiers)
 
 ---
@@ -64,7 +64,7 @@ Medical AI teams waste months on IRB approvals, de-identification workflows, and
 
 We eliminate that wait entirely.
 
-WITNESS DATA FACTORY™ is a deterministic GenAI pipeline that generates, validates, and delivers **production-grade synthetic clinical text datasets** with zero real patient data ever accessed or stored.
+WITNESS DATA FACTORY™ is a deterministic GenAI pipeline that generates, validates, and delivers **production-grade synthetic clinical text datasets** — certified under a **WITNESS GATE SCORE ≥ 0.97** — with zero real patient data ever accessed or stored.
 
 **The factory produces the datasets. The datasets are the product.**
 
@@ -100,21 +100,42 @@ WITNESS DATA FACTORY™ is a deterministic GenAI pipeline that generates, valida
 
 ---
 
+## The WITNESS Quality Gate
+
+Every record passes the **WITNESS GATE** before delivery.
+
+The WITNESS GATE combines:
+
+- deterministic rules, and
+- a **two-model ensemble** that scores each record in a blind consensus configuration.
+
+The resulting **WITNESS GATE SCORE** is a continuous quality value in [0, 1]. Records whose WITNESS GATE SCORE falls below `0.97` are discarded and regenerated — the gate is never relaxed.
+
+Every delivery ships with a machine-readable `qa_certificate.json` documenting:
+
+- Batch ID and certificate timestamp
+- Records requested / pool generated / records delivered
+- Average, median, min, and max WITNESS GATE scores
+- Pipeline version and ensemble configuration identifiers
+
+See [`certificates/README.md`](certificates/README.md) for the full QA certificate field reference.
+
+---
+
 ## QA Pipeline and Operating Modes
 
 Every production batch is processed through the WITNESS multi-stage validation pipeline before delivery. The pipeline supports two operating modes, recorded in every batch's machine-readable `qa_certificate.json`:
 
-| Mode | `gate_mode` | `witness_gate_status` | Trinity Active? | ESCALATE Record Handling |
+| Mode | `gate_mode` | `witness_gate_status` | Ensemble Active? | ESCALATE Record Handling |
 |---|---|---|---|---|
-| **Witness Gate** | `witness_gate` | `enabled_for_batch` | Yes — 3-model ensemble | Reviewed by Trinity; PASS records may be delivered, REJECT records excluded |
-| **Rules-only** | `rules_only` | `disabled_for_batch` | No — intentionally disabled | Excluded without Trinity review; counted as rejected in QA certificate |
+| **Witness Gate** | `witness_gate` | `enabled_for_batch` | Yes — 2-model ensemble | Records failing rules or ensemble threshold are excluded and regenerated |
+| **Rules-only** | `rules_only` | `disabled_for_batch` | No — rules only | Records failing rules are excluded; no ensemble scoring is applied |
 
 **In both modes:**
-- Only rules PASS and REPAIR records (and, in Witness Gate mode, Trinity gate PASS records) are delivered.
+
+- Only rules PASS and REPAIR records (and, in Witness Gate mode, WITNESS GATE PASS records) are delivered.
 - The `qa_certificate.json` delivered with every batch is the **canonical machine-readable source of truth** for `gate_mode`, `witness_gate_status`, `records_delivered`, rejection counts, and all quality metrics.
 - The compliance PDFs included in each delivery package are supporting human-readable documents.
-
-See [`certificates/README.md`](certificates/README.md) for the full QA certificate field reference.
 
 ---
 
@@ -134,11 +155,11 @@ No real patient data. No de-identification after the fact. PHI never enters the 
 
 | Standard | Status |
 |---|---|
-| HIPAA Safe Harbor | COMPLIANT |
-| GDPR (Synthetic Data Exemption) | COMPLIANT |
-| EU AI Act Article 10 | ALIGNED |
-| CCPA | COMPLIANT |
-| FDA Guidance (Synthetic Data for SaMD) | ALIGNED |
+| HIPAA Safe Harbor | ✅ COMPLIANT |
+| GDPR (Synthetic Data Exemption) | ✅ COMPLIANT |
+| EU AI Act Article 10 | ✅ ALIGNED |
+| CCPA | ✅ COMPLIANT |
+| FDA Guidance (Synthetic Data for SaMD) | ✅ ALIGNED |
 
 WITNESS DATA FACTORY™ indemnifies purchasers against PHI claims under the terms of the commercial dataset license.
 
@@ -175,7 +196,9 @@ Delivery is fully automated. Download links issued without manual intervention.
 | `domain` | string | Clinical domain label |
 | `text` | string | Synthetic clinical note, report, or description |
 | `labels` | object | Structured annotations (task-specific per domain) |
-| `eval.confidence` | float | Rules-based QA confidence score; in Witness Gate mode, reflects Trinity consensus score |
+| `eval.confidence` | float | Rules-based QA confidence score; in Witness Gate mode, reflects the WITNESS GATE SCORE |
+
+Filter on `eval.confidence >= 0.97` to match the production gate.
 
 Full schema definitions for all 9 domains: [`schemas/`](schemas/)
 
@@ -202,7 +225,7 @@ Full examples (load, validate, HuggingFace): [`docs/quickstart.md`](docs/quickst
 |---|---|
 | Live Platform | [witness-data-factory.onrender.com](https://witness-data-factory.onrender.com?utm_source=github_public&utm_medium=readme&utm_campaign=links_table&utm_content=platform) |
 | Free Evaluation Datasets | [huggingface.co/WitnessDataFactory](https://huggingface.co/WitnessDataFactory) |
-| Enterprise Orders | [witness-data-factory.onrender.com](https://witness-data-factory.onrender.com?utm_source=github_public&utm_medium=readme&utm_campaign=links_table&utm_content=enterprise) |
+| Enterprise Orders (AWS Data Exchange) | [witness-data-factory.onrender.com](https://witness-data-factory.onrender.com?utm_source=github_public&utm_medium=readme&utm_campaign=links_table&utm_content=enterprise) |
 | Licensing Inquiries | [WitnessDataFactory@gmail.com](mailto:WitnessDataFactory@gmail.com) |
 
 ---
