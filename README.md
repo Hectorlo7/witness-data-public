@@ -16,15 +16,6 @@
 | Domain | Browse Sample | Live Download |
 |---|---|---|
 | Oncology | [oncology_sample_1k.csv](samples/oncology/oncology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/oncology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=oncology_1k) |
-| Cardiology | [cardiology_sample_1k.csv](samples/cardiology/cardiology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/cardiology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=cardiology_1k) |
-| Neurology | [neurology_sample_1k.csv](samples/neurology/neurology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/neurology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=neurology_1k) |
-| Pathology | [pathology_sample_1k.csv](samples/pathology/pathology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/pathology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=pathology_1k) |
-| Radiology | [radiology_sample_1k.csv](samples/radiology/radiology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/radiology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=radiology_1k) |
-| Endocrinology | [endocrinology_sample_1k.csv](samples/endocrinology/endocrinology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/endocrinology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=endocrinology_1k) |
-| Pharmacology | [pharmacology_sample_1k.csv](samples/pharmacology/pharmacology_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/pharmacology?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=pharmacology_1k) |
-| Rare Disease | [rare_disease_sample_1k.csv](samples/rare_disease/rare_disease_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/rare_disease?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=rare_disease_1k) |
-| Surgical | [surgical_sample_1k.csv](samples/surgical/surgical_sample_1k.csv) | [Download 1k records →](https://witness-data-factory.onrender.com/free-sample/surgical?utm_source=github_public&utm_medium=readme&utm_campaign=get_started&utm_content=surgical_1k) |
-
 > Paid packs (10k → 1M records) sold via **AWS Data Exchange** and delivered via entitlement + presigned download URL.
 > [**Order now →**](https://witness-data-factory.onrender.com?utm_source=github_public&utm_medium=readme&utm_campaign=enterprise&utm_content=paid_tiers)
 
